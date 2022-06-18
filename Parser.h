@@ -11,6 +11,8 @@
 #include "Lista_escritores.h"
 #include "Lista_lecturas.h"
 
+#include "Hash.h"
+
 #include <sstream>
 using namespace std;
 
@@ -50,6 +52,8 @@ private:
 
 public:
 
+    Hash hash;
+
     //PRE: ruta debe ser una ruta válida.
     //POST: Lee el archivo de escritores, crea los objetos y los almacena en lista_escritores.
     Lista_escritores* procesar_escritor(string ruta, Lista_escritores *lista_escritores);
@@ -57,5 +61,8 @@ public:
     //PRE: ruta debe ser una ruta válida.
     //POST: Lee el archivo de lecturas, crea los objetos y los almacena en lista_lecturas.
     Lista_lecturas* procesar_lectura(string ruta, Lista_lecturas *lista_lectura, Lista_escritores *lista_escritores);
+
+
+
 };
 #endif // __PARSER_H__

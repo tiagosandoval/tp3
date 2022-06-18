@@ -1,21 +1,28 @@
 #include <iostream>
 #include "Parser.h"
 #include "CONSTANTES.h"
+#include "Hash.h"
 
 using namespace std;
 
 Lista_escritores* Parser::procesar_escritor(string ruta, Lista_escritores *lista_escritores){
 
-    string nombre, nacionalidad, lectura;
-    int nacimiento, fallecimiento, isni;
+    string nombre, nacionalidad, lectura, isni;
+    int nacimiento, fallecimiento;
 
     Archivo entrada(ruta);
 
     while (!entrada.final_archivo()){
+
         lectura = entrada.leer_linea();
 
         if(!lectura.empty()){
+
             isni = lectura;
+            //std::cout << isni << std::endl;
+
+            nombre = entrada.leer_linea();
+            //std::cout << nombre << std::endl;
             nacionalidad = entrada.leer_linea();
             lectura = entrada.leer_linea();
 
@@ -51,9 +58,14 @@ Lista_escritores* Parser::procesar_escritor(string ruta, Lista_escritores *lista
             }
             Escritor* escritor = new Escritor(nombre, nacionalidad, nacimiento, fallecimiento);
             almacenar_escritor(escritor, lista_escritores);
+            hash.agregar_item(isni, escritor);
+
         }
+
     }
     entrada.cerrar_archivo();
+    std::cout << "hash " << std::endl;
+    hash.imprimir_tabla();
     return lista_escritores;
 }
 
@@ -151,6 +163,7 @@ generos Parser::obtener_genero(string genero) {
 void Parser::almacenar_escritor(Escritor* escritor, Lista_escritores *lista_escritores){
     lista_escritores->alta(escritor);
 }
+
 
 void Parser::almacenar_lectura(Lectura* lectura, Lista_lecturas *lista_lecturas){
     lista_lecturas->alta(lectura);

@@ -1,5 +1,6 @@
 #include "Menu.h"
 #include "Parser.h"
+#include "Hash.h"
 
 Menu::Menu(){
 
@@ -136,6 +137,7 @@ Lectura* Menu::crear_lectura(){
     int tipo = printer.pedir_tipo();
 
     switch(tipo) {
+
 
         case 1:{
             int versos = printer.pedir_versos();
