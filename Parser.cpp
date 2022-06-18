@@ -19,10 +19,8 @@ Lista_escritores* Parser::procesar_escritor(string ruta, Lista_escritores *lista
         if(!lectura.empty()){
 
             isni = lectura;
-            //std::cout << isni << std::endl;
 
             nombre = entrada.leer_linea();
-            //std::cout << nombre << std::endl;
             nacionalidad = entrada.leer_linea();
             lectura = entrada.leer_linea();
 
@@ -58,7 +56,7 @@ Lista_escritores* Parser::procesar_escritor(string ruta, Lista_escritores *lista
             }
             Escritor* escritor = new Escritor(nombre, nacionalidad, nacimiento, fallecimiento);
             almacenar_escritor(escritor, lista_escritores);
-            hash.agregar_item(isni, escritor);
+            hash.agregar_lista(isni, escritor);
 
         }
 
@@ -66,6 +64,13 @@ Lista_escritores* Parser::procesar_escritor(string ruta, Lista_escritores *lista
     entrada.cerrar_archivo();
     std::cout << "hash " << std::endl;
     hash.imprimir_tabla();
+    while(isni!="exit"){
+        std::cout << "escriba exit para salir o el numero isne dentro de ()";
+        std::cin >> isni;
+        if(isni!="exit")
+            hash.encontrar_objeto(isni);
+    }
+
     return lista_escritores;
 }
 
@@ -97,7 +102,7 @@ Lista_lecturas* Parser::procesar_lectura(string ruta, Lista_lecturas *lista_lect
                 versos = atoi(dato.c_str());
 
                 dato = entrada.leer_linea();
-                escritor = obtener_escritor(dato, lista_escritores);
+                escritor = obtener_escritor(dato);
 
                 Poema* poema = new Poema(titulo, escritor, anio, minutos, versos);
                 almacenar_lectura(poema, lista_lecturas);
@@ -109,14 +114,14 @@ Lista_lecturas* Parser::procesar_lectura(string ruta, Lista_lecturas *lista_lect
                     tema_linea = entrada.leer_linea();
 
                     dato = entrada.leer_linea();
-                    escritor = obtener_escritor(dato, lista_escritores);
+                    escritor = obtener_escritor(dato);
 
                     Novela_historica* historica = new Novela_historica(titulo, escritor, anio, minutos, tema_linea);
                     almacenar_lectura(historica, lista_lecturas);
                 }
                 else{
                     dato = entrada.leer_linea();
-                    escritor = obtener_escritor(dato, lista_escritores);
+                    escritor = obtener_escritor(dato);
 
                     Novela* novela = new Novela(titulo, escritor, anio, minutos, genero);
                     almacenar_lectura(novela, lista_lecturas);
@@ -127,7 +132,7 @@ Lista_lecturas* Parser::procesar_lectura(string ruta, Lista_lecturas *lista_lect
                 libro = dato;
 
                 dato = entrada.leer_linea();
-                escritor = obtener_escritor(dato, lista_escritores);
+                escritor = obtener_escritor(dato);
 
                 Cuento* cuento = new Cuento(titulo, escritor, anio, minutos, libro);
                 almacenar_lectura(cuento, lista_lecturas);
@@ -178,16 +183,17 @@ Escritor* Parser::rastrear_escritor(int codigo, Lista_escritores *lista_escritor
     return lista_escritores->consultar(codigo);
 }
 
-Escritor* Parser::obtener_escritor(string linea, Lista_escritores *lista_escritores){
-    int referencia_escritor;
+Escritor* Parser::obtener_escritor(string linea){
     Escritor* escritor;
 
     if (verificar_escritor(linea)){
-        referencia_escritor = obtener_referencia(linea);
-        escritor = rastrear_escritor(referencia_escritor, lista_escritores);
+        escritor = hash.encontrar_objeto(linea);
+        std::cout <<  "****************" << escritor->obtener_nombre() << std::endl;
     }
-    else
+    else{
         escritor = nullptr;
+        std::cout << escritor << std::endl;
+    }
     return escritor;
 }
 

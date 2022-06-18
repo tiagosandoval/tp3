@@ -40,7 +40,7 @@ private:
 
     //PRE: linea es una linea leida del archivo de Lecturas.
     //POST: Devuelve el escritor, de no existir, devueleve nullptr.
-    Escritor* obtener_escritor(string linea, Lista_escritores *lista_escritores);
+    Escritor* obtener_escritor(string linea);
 
     //PRE: codigo > 0
     //POST: Devuelve el Escritor que corresponde en base a la referencia de la Lectura.
