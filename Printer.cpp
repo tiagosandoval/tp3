@@ -2,15 +2,16 @@
 
 int Printer::pedir_opcion(){
     string opcion;
+    int op;
     cout << VIOLETA << "\n\t\tIngresar opcion: ";
-    cin >> opcion;
-    return atoi(opcion.c_str());
+    getline(cin, opcion);
+    op = atoi(opcion.c_str());
+    return op;
 }
 
 string Printer::pedir_titulo(){
     string titulo;
     cout << NEGRO << "Ingrese el título de la lectura: ";
-    cin.ignore();
     getline(cin, titulo);
     return titulo;
 }
@@ -50,6 +51,7 @@ string Printer::pedir_libro(){
     cout << "Ingrese el titulo del libro: ";
     cin.ignore();
     getline(cin, libro);
+    //libro = (char) toupper(libro[0])
     return libro;
 }
 
@@ -74,6 +76,13 @@ string Printer::pedir_tema(){
     cin.ignore();
     getline(cin, tema);
     return tema;
+}
+
+string Printer::pedir_isni(){
+    string isni;
+    cout << AZUL << "Ingrese isni del escritor: ";
+    getline(cin, isni);
+    return isni;
 }
 
 string Printer::pedir_nombre(){

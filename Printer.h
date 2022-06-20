@@ -47,6 +47,10 @@ public:
     string pedir_tema();
 
     //PRE: -
+    //POS: Le solicita al usuario que ingrese un isni para ser procesado.
+    string pedir_isni();
+
+    //PRE: -
     //POS: Le solicita al usuario que ingrese un nombre para ser procesado.
     string pedir_nombre();
     
