@@ -2,16 +2,15 @@
 
 int Printer::pedir_opcion(){
     string opcion;
-    int op;
     cout << VIOLETA << "\n\t\tIngresar opcion: ";
-    getline(cin, opcion);
-    op = atoi(opcion.c_str());
-    return op;
+    cin >> opcion;
+    return atoi(opcion.c_str());
 }
 
 string Printer::pedir_titulo(){
     string titulo;
     cout << NEGRO << "Ingrese el título de la lectura: ";
+    cin.ignore();
     getline(cin, titulo);
     return titulo;
 }

@@ -124,22 +124,17 @@ Escritor* Hash::encontrar_dato(string llave) {
 
 Escritor* Hash::buscar_item(int indice, string nombre) {
     Item* puntero = tabla_hash[indice];
-    Escritor* escritor;
-    bool encontrado = false;
-    std::cout<< "entroooooooo" << std::endl;
+    Escritor* escritor = nullptr;
 
     if(puntero->escritor != nullptr){
 
-        while(puntero != nullptr){
+        while((puntero != nullptr)){
             if(puntero->escritor->obtener_nombre() == nombre){
-                std::cout << puntero->escritor->obtener_nombre() << endl;
-                encontrado = true;
+                std::cout << "ENCONTRADO ==========="<<puntero->escritor->obtener_nombre() << endl;
                 escritor = puntero->escritor;
+                std::cout << escritor << std::endl;
+                return escritor;
             }
-
-            if(!encontrado)
-                escritor = nullptr;
-
             puntero = puntero->siguiente;
         }
     }
@@ -148,16 +143,20 @@ Escritor* Hash::buscar_item(int indice, string nombre) {
 
 Escritor* Hash::encontrar_por_nombre(string nombre) {
     Escritor* escritor;
+    Escritor* encontrado = nullptr;
     int cantidad_elementos;
     for(int i = 0; i < n; i++){
         cantidad_elementos = cantidad_item_en_indice(i);
         if(cantidad_elementos > 0){
-            std::cout<< "busca" << std::endl;
             escritor = buscar_item(i, nombre);
+            if(escritor != nullptr){
+                encontrado = escritor;
+                std::cout << escritor << std::endl;
+            }
         }
     }
-    std::cout << escritor << std::endl;
-    return escritor;
+    std::cout << "hey " << encontrado << std::endl;
+    return encontrado;
 }
 /*
 void Hash::eliminar_lista(string llave) {

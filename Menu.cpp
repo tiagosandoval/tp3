@@ -7,7 +7,7 @@ Menu::Menu(){
 
     Parser parser;
     Hash tabla;
-    parser.procesar_escritor(ARCHIVO_ESCRITORES, tabla);
+    this-> tabla = parser.procesar_escritor(ARCHIVO_ESCRITORES, tabla);
     this->lista_lecturas = parser.procesar_lectura(ARCHIVO_LECTURAS, lista_lecturas, tabla);
 
     srand( (unsigned int) time(0));
@@ -24,6 +24,7 @@ void Menu::mostrar_menu(){
 }
 
 void Menu::elegir_opcion(){
+    string opcion;
     this->opcion = printer.pedir_opcion();
 }
 
@@ -55,6 +56,7 @@ bool Menu::selector_menu(){
 
         case 5:
             cout << VERDE << "Caso 5: Listar los escritores" << endl;
+            tabla.imprimir_tabla();
             estado = true;
             break;
 
@@ -97,6 +99,7 @@ bool Menu::selector_menu(){
         default:
             cout << "\nError elige otra opcion valida\n" << endl;
             estado = true;
+
     }
     return estado;
 }

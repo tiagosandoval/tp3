@@ -44,7 +44,7 @@ public:
 
     //PRE: ruta debe ser una ruta válida.
     //POST: Lee el archivo de escritores, crea los objetos y los almacena en lista_escritores.
-    void procesar_escritor(string ruta, Hash tabla);
+    Hash procesar_escritor(string ruta, Hash tabla);
 
     //PRE: ruta debe ser una ruta válida.
     //POST: Lee el archivo de lecturas, crea los objetos y los almacena en lista_lecturas.

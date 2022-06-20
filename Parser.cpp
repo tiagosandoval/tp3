@@ -4,7 +4,7 @@
 
 using namespace std;
 
-void Parser::procesar_escritor(string ruta, Hash tabla){
+Hash Parser::procesar_escritor(string ruta, Hash tabla){
 
     string nombre, nacionalidad, lectura, isni;
     int nacimiento, fallecimiento;
@@ -62,6 +62,7 @@ void Parser::procesar_escritor(string ruta, Hash tabla){
     entrada.cerrar_archivo();
     std::cout << "hash " << std::endl;
     tabla.imprimir_tabla();
+    return tabla;
 }
 
 Lista <Lectura*>* Parser::procesar_lectura(string ruta, Lista<Lectura*>* lista_lecturas, Hash tabla){

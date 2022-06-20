@@ -74,7 +74,6 @@ Escritor* Opciones::crear_escritor() {
 
     string nombre = printer.pedir_nombre();
     escritor_hallado = tabla.encontrar_por_nombre(nombre);
-
     if (escritor_hallado != nullptr) {
         nuevo_escritor = escritor_hallado;
         cout << "Escritor existente\n" << endl;
