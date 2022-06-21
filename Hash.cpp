@@ -16,15 +16,12 @@ Hash::Hash(){
     }
 }
 
-int Hash::valor_Hash(string llave)
-{
-    int hash = 0;
-    int tamanio = (int)(llave).length();
+int Hash::valor_Hash(string llave){
+    int hash = 0, i = 1;
 
-    for(int i = 1; i < tamanio; i++){
-        if((llave[i] != ')')){
-            hash = hash + (int)llave[i];
-        }
+    while(llave[i] != ')') {
+        hash = hash + (int) llave[i];
+        i++;
     }
 
     return(hash % n); // devuelve el indice
